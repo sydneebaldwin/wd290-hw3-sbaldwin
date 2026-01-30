@@ -105,20 +105,40 @@ nav ul {
         gap: 1rem; }
 
 nav a { 
-        padding: .5rem .75rem; 
+        position: relative;
+        padding: .25rem .75rem; 
         font-family: helvetica;
         font-size: 0.9rem;
         text-transform: uppercase;
         color: #fff;
         font-weight: bold;
         text-decoration: none;
+        transition: color 0.5s;
  }
 
- nav a:hover { 
-    text-decoration: underline;
-    text-underline-offset: 0.25rem;
-    text-decoration-thickness: 2px;
-    }
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 1.5rem);
+  left: 0.75rem;
+  bottom: 0;
+  height: 0.2rem;
+  background-color: var(--dark);
+  transform-origin: center; 
+  transform: scale(0);
+  transition: transform 0.3s;
+}
+
+nav a:hover {
+    color: var(--dark);
+}
+
+nav a:hover::after, nav a:focus::after{
+    transform: scale(1);
+} 
+
+
 
 @media (max-width: 860px) {
     .nav { 
@@ -161,6 +181,15 @@ nav a {
     nav a { 
         color: var(--light);
     }
+
+    nav a::after {
+  background-color: var(--green);
+  height: 0.1rem;
+}
+
+nav a:hover {
+    color: var(--green);
+}
  
 }
 
@@ -349,11 +378,10 @@ section:first-of-type p {
 
 section:last-of-type {
     background-color: var(--dark);
-    color: var(--light);
+    color: var(--dark);
     font-family: pp-editorial;
     text-transform: uppercase;
     font-size: 0.5rem;
-    text-align: right;
     display: grid;
     width: 100vw;
     grid-template-columns: repeat(4, minmax(100px, 170px));
@@ -364,7 +392,7 @@ section:last-of-type {
     justify-content: center;
 }
 
-section:last-of-type div > div {
+section:last-of-type div > div:first-of-type {
     width: 100%;
     height: 95%;
     background-position: center;
@@ -372,20 +400,22 @@ section:last-of-type div > div {
     background-size: cover;
 }
 
-/* section:last-of-type div:first-of-type > div, section:last-of-type div:nth-of-type(3) > div{
-    aspect-ratio: 1/2;
-}
-
-section:last-of-type div:nth-of-type(2) > div, section:last-of-type div:nth-of-type(7) > div {
-    aspect-ratio: 2/1;
-}
-
-section:last-of-type div:nth-of-type(4) > div, section:last-of-type div:nth-of-type(5) > div, section:last-of-type div:nth-of-type(6) > div, section:last-of-type div:last-of-type > div {
-    aspect-ratio: 1/1;
-} */
-
 section:last-of-type p {
-    margin-top: 0.5rem;
+    /*margin-top: 0.5rem;
+    position: relative;
+    background-color: var(--light);
+    left: 100%;
+    bottom: 90%;
+    font-size: 0.7rem;
+    padding: 1rem;*/
+}
+
+section:last-of-type div > div:last-of-type {
+    position: relative;
+    background-color: var(--light);
+    font-size: 0.7rem;
+    bottom: 50px;
+    padding: 1rem;
 }
 
 section:last-of-type > div:first-of-type {
